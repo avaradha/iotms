@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org"></html>
+<html>
+<head>
+    <th:block th:fragment="common-links">   
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      <meta name="description" content="">
+      <meta name="author" content="Issac Lee">
+      
+      <link rel="icon" href="images/favicon.ico" type="image/x-icon"/>
+      <link href="bootstrap-4.0.0/css/font-awesome.min.css" rel="stylesheet">
+      <link href="bootstrap-4.0.0/css/bootstrap.min.css" rel="stylesheet">
+      <link href="bootstrap-4.0.0/css/coreui.min.css" rel="stylesheet">                
+      <link href="css/style.css" rel="stylesheet"> 
+      <link href="css/codemirror.min.css" rel="stylesheet">        
+    </th:block>
+</head>
+<body>
+  <header th:fragment="navbar">
+    <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+      <img src="images/logo.png" >
+      <button class="navbar-toggler p-0 border-0" type="button" data-toggle="collapse" data-target="#main-menu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+    </nav>
+  </header>
+
+  <footer th:fragment="footer">
+    <nav class="navbar navbar-expand-sm fixed-bottom navbar-light bg-light">
+      <div>
+        <span><small>&copy; 2019 openecs.com</small></span>
+      </div>
+      <div class="ml-auto">
+        <span></span>
+      </div>
+    </nav> 
+  </footer>
+  <th:block th:fragment="scripts">
+    <script src="bootstrap-4.0.0/js/jquery.min.js"></script>
+    <script src="bootstrap-4.0.0/js/bootstrap.min.js"></script>
+    <script src="bootstrap-4.0.0/js/coreui.min.js"></script>
+    <script src="js/chart.min.js"></script>        
+  </th:block>        
+</body>
+
+</html>

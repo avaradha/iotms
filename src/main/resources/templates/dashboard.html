@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+  <th:block th:replace="layouts/default :: common-links"></th:block>
+  <title>IoT Microservice</title>  
+</head>
+
+<body class="app header-fixed">
+    <header th:replace="layouts/default :: navbar" class="app-header"></header>
+    <div class="app-body">
+      <div class="sidebar"></div>
+      <main class="main">
+        <!-- main content start -->
+        <canvas id="mem-widget"></canvas>
+        <!-- main content end -->
+      </main>
+      <aside class="aside-menu"></aside>
+    </div>
+    <footer th:replace="layouts/default :: footer" class="app-footer"></footer>
+
+    <th:block th:replace="layouts/default :: scripts"></th:block>
+
+    <script src="js/dashboard.js"></script>
+    <script>
+      refreshDashboard();
+    </script>
+   
+  </body>
+
+</html>
+
+
