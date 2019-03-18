@@ -3,7 +3,7 @@
 set -x
 
 # Explicitly set the JAVA_HOME and JAVA_OPTS
-JAVA_HOME=${JAVA_HOME:-/usr/java/java11}
+JAVA_HOME=${JAVA_HOME:-/usr/java}
 JAVA_OPTS="-Xmx1g"
 
 # Start the JAVA project

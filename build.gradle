@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.openecs'
-version = '0.2.0'
+version = '0.2.0-RC'
 sourceCompatibility = '1.8'
 
 repositories {
@@ -23,8 +23,8 @@ dependencies {
 }
 
 task zip(type: Zip, dependsOn: 'jar') {
-    from (tasks.jar.archivePath) {
-    	into 'lib'
-    }
-		from ('bin/') into 'bin'
+	from (tasks.jar.archivePath) {
+		into 'lib'
+	}
+	from ('bin/') into 'bin'
 }
