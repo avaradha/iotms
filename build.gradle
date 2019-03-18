@@ -6,7 +6,7 @@ plugins {
 apply plugin: 'io.spring.dependency-management'
 
 group = 'com.openecs'
-version = '0.2.0-RC'
+version = '0.3.0'
 sourceCompatibility = '1.8'
 
 repositories {
