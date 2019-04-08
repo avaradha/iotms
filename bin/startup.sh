@@ -2,8 +2,25 @@
 #
 set -x
 
-# Explicitly set the JAVA_HOME and JAVA_OPTS
-JAVA_HOME=${JAVA_HOME:-/usr/java}
+# Set the defaullt JAVA_HOME for the OS family
+OS_FAMILY="$(uname -s)"
+case "${OS_FAMILY}" in
+    Linux*)     
+        DEFAULT_JAVA_HOME="$(dirname $(dirname $(readlink -f $(which java))))"
+        ;;
+    Darwin*)    
+        DEFAULT_JAVA_HOME=$(/usr/libexec/java_home)
+        ;;
+    CYGWIN*)    
+        DEFAULT_JAVA_HOME=""
+        ;;
+    *)          
+        DEFAULT_JAVA_HOME=""
+        ;;
+esac
+
+# Use the default JAVA_HOME if it is not set
+JAVA_HOME=${JAVA_HOME:-${DEFAULT_JAVA_HOME}}
 JAVA_OPTS="-Xmx1g"
 
 # Start the JAVA project
