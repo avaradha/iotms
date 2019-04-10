@@ -23,6 +23,7 @@ public class IotmsApplication {
 	public CommandLineRunner commandLineRunner(ApplicationContext ctx) {
 		
 		return args -> {
+			/*
 
 			System.out.println("Inspect the beans provided by Spring Boot:");
 
@@ -31,6 +32,7 @@ public class IotmsApplication {
 			for (String beanName : beanNames) {
 					System.out.println(beanName);
 			}
+			*/
 		};
 		
 		//return args -> {};

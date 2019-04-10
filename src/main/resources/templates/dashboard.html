@@ -12,6 +12,7 @@
       <div class="sidebar"></div>
       <main class="main">
         <!-- main content start -->
+        <p th:text="${health.details}" />
         <canvas id="mem-widget"></canvas>
         <!-- main content end -->
       </main>
@@ -23,7 +24,8 @@
 
     <script src="js/dashboard.js"></script>
     <script>
-      refreshDashboard();
+      var data = /*[[${health.details}]]*/ "";
+      refreshDashboard(data);
     </script>
    
   </body>
