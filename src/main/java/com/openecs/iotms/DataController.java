@@ -17,9 +17,18 @@ import org.springframework.boot.actuate.system.DiskSpaceHealthIndicator;
 import org.springframework.boot.actuate.jms.JmsHealthIndicator;
 import org.springframework.boot.actuate.health.Health;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
+import org.springframework.jdbc.core.JdbcTemplate;
+
 @RestController
 public class DataController implements ApplicationContextAware {
     private ApplicationContext appContext;
+
+    // https://spring.io/guides/gs/relational-data-access/
+    // https://www.logicbig.com/tutorials/spring-framework/spring-boot/jdbc-and-in-memory-h2.html
+    @Autowired
+    JdbcTemplate jdbcTemplate;    
 
     @Override
     public void setApplicationContext(ApplicationContext appContext) throws BeansException {

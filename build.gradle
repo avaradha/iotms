@@ -7,6 +7,7 @@ plugins {
 
 apply plugin: 'io.spring.dependency-management'
 
+// Set the project information
 group = 'com.openecs'
 version = '0.3.0'
 sourceCompatibility = '1.8'
@@ -15,6 +16,7 @@ repositories {
 	mavenCentral()
 }
 
+// Expose the build information such as project name, version etc
 springBoot {
   buildInfo()
 }
@@ -44,6 +46,7 @@ test {
 	}               
 }
 
+// Create a zip package
 task zip(type: Zip, dependsOn: 'jar') {
 	from (tasks.jar.archivePath) {
 		into 'lib'
@@ -51,18 +54,21 @@ task zip(type: Zip, dependsOn: 'jar') {
 	from ('bin/') into 'bin'
 }
 
+// Upload a release to the repository
 task release ( dependsOn: "zip" ) {
 	//def def githubApiKey = System.getenv('github.api.key')
 	//def githubUser = System.getenv('github.api.key')
-	def githubApiKey = "2dd43739712714dd43eb3f398fdf690733c1fc08"
+	def githubApiKey = "404b0659c18e9cfc48397ca10206bd06d0790b08"
 	def githubUser = "openecs"
 	doLast {
 		println 'Upload to GitHub'
 
 		exec {	
       executable = "curl"
-      args = [ "-X GET", "-v", "-u", "${githubUser}:${githubApiKey}",
-				"https://api.github.com/repos/openecs/bootcamp/branches"
+      args = [ "-X POST", "-u", "${githubUser}:${githubApiKey}",
+				"https://api.github.com/repos/openecs/iotms/releases/0.3.0/assets?name=iotms-0.3.0.zip",
+				"--header", "Content-Type: application/zip",
+				"--upload-file", "build/distributions/iotms-0.3.0.zip"
 			]
     }		
 	}
