@@ -1,6 +1,6 @@
 plugins {
 	id 'org.springframework.boot' version '2.1.4.RELEASE'
-	id 'java'
+	// id 'java'
 	id 'java-library'
 	id 'maven-publish'
 }
@@ -26,15 +26,23 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-actuator'
 	implementation 'org.springframework.boot:spring-boot-starter-thymeleaf'
 	implementation 'org.springframework.boot:spring-boot-starter-web'
+  implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
 
-	compile 'io.micrometer:micrometer-registry-prometheus:latest.release'
-	compile 'io.springfox:springfox-swagger2:latest.release'
-	compile 'io.springfox:springfox-swagger-ui:latest.release'	
-  compile 'org.springframework.boot:spring-boot-starter-data-jpa'
-  compile 'com.h2database:h2'		
+	implementation 'io.micrometer:micrometer-registry-prometheus:latest.release'
+	implementation 'io.springfox:springfox-swagger2:latest.release'
+	implementation 'io.springfox:springfox-swagger-ui:latest.release'	
+  implementation 'com.h2database:h2'		
 
 	runtimeOnly 'org.springframework.boot:spring-boot-devtools'
-	runtimeOnly 'com.h2database:h2'
+	//runtimeOnly 'com.h2database:h2'
+
+	//https://github.com/FasterXML/jackson-core
+	implementation 'com.fasterxml.jackson.core:jackson-core:2.9.8'
+	implementation 'com.fasterxml.jackson.core:jackson-annotations:2.9.8'
+	implementation 'com.fasterxml.jackson.core:jackson-databind:2.9.8'
+
+	// https://mvnrepository.com/artifact/com.jayway.jsonpath/json-path
+	implementation 'com.jayway.jsonpath:json-path:2.4.0'	
 
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
