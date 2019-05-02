@@ -12,13 +12,14 @@
       <div class="sidebar"></div>
       <main class="main">
         <!-- main content start -->
-        <p th:text="${health.details}" />
+        <!--FOR DEBUG: p th:text="${health.details}" /-->
         
         <!-- main content end -->
         <div class="container-fluid">
 
           <div class="animated fadeIn">
             <div class="row">
+              
               <div class="col-sm-6 col-lg-3">
                 <div class="card text-white bg-primary">
                   <div class="card-body pb-0">
@@ -27,13 +28,11 @@
                         <i class="icon-settings"></i>
                       </button>
                       <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Setting</a>
                       </div>
                     </div>
-                    <h4 class="mb-0">9.823</h4>
-                    <p>Members online</p>
+                    <h4 class="mb-0">1</h4>
+                    <p>Total Services</p>
                   </div>
                   <div class="chart-wrapper px-3" style="height:70px;">
                     <canvas id="card-chart1" class="chart" height="70"></canvas>
@@ -45,10 +44,19 @@
               <div class="col-sm-6 col-lg-3">
                 <div class="card text-white bg-info">
                   <div class="card-body pb-0">
-                    <canvas id="mem-widget"></canvas>
+                    <div class="btn-group float-right">
+                      <button type="button" class="btn btn-transparent dropdown-toggle p-0" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="icon-settings"></i>
+                      </button>
+                      <div class="dropdown-menu dropdown-menu-right">
+                        <a class="dropdown-item" href="#">Setting</a>
+                      </div>
+                    </div>
+                    <h4 class="mb-0">16G</h4>
+                    <p>Total Memory</p>
                   </div>
-                  <div class="chart-wrapper" style="height:70px;">
-                    <canvas id="card-chart3" class="chart" height="70"></canvas>
+                  <div class="chart-wrapper px-3" style="height:70px;">
+                    <canvas id="card-chart1" class="chart" height="70"></canvas>
                   </div>
                 </div>
               </div>
@@ -62,13 +70,11 @@
                         <i class="icon-settings"></i>
                       </button>
                       <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Setting</a>
                       </div>
                     </div>
-                    <h4 class="mb-0">9.823</h4>
-                    <p>Members online</p>
+                    <h4 class="mb-0">4</h4>
+                    <p>Total CPU</p>
                   </div>
                   <div class="chart-wrapper" style="height:70px;">
                     <canvas id="card-chart3" class="chart" height="70"></canvas>
@@ -85,13 +91,11 @@
                         <i class="icon-settings"></i>
                       </button>
                       <div class="dropdown-menu dropdown-menu-right">
-                        <a class="dropdown-item" href="#">Action</a>
-                        <a class="dropdown-item" href="#">Another action</a>
-                        <a class="dropdown-item" href="#">Something else here</a>
+                        <a class="dropdown-item" href="#">Setting</a>
                       </div>
                     </div>
-                    <h4 class="mb-0">9.823</h4>
-                    <p>Members online</p>
+                    <h4 class="mb-0">512G</h4>
+                    <p>Total Disk</p>
                   </div>
                   <div class="chart-wrapper px-3" style="height:70px;">
                     <canvas id="card-chart4" class="chart" height="70"></canvas>
@@ -106,15 +110,25 @@
                   <table class="table table-responsive-sm table-hover table-outline mb-0">
                     <thead class="thead-light">
                       <tr>
-                        <th class="text-center"><i class="icon-people"></i></th>
-                        <th>User</th>
-                        <th class="text-center">Country</th>
-                        <th>Usage</th>
-                        <th class="text-center">Payment Method</th>
-                        <th>Activity</th>
-                      </tr>
+                        <th class="text-left">SERVICE</th>
+                        <th class="text-left">STARTED</th>
+                        <th class="text-left">STATUS</th>
+                        <th class="text-center">CPU %</th>
+                        <th class="text-center">MEM %</th>
+                        <th class="text-right">NET IO</th>
+                        <th class="text-right">BLOCK IO</th>                                                                                                
+                      </tr>       
                     </thead>
                     <tbody>
+                      <tr>
+                        <td class="text-left">IoT Microservice</td>
+                        <td class="text-left" th:text="${#execInfo.now.time}"></td>
+                        <td class="text-left">Running</td>
+                        <td class="text-center">1</td>
+                        <td class="text-center">25m</td>
+                        <td class="text-right">12k</td>
+                        <td class="text-right">0k</t>                                                                                                
+                        </tr>                      
                     </tbody>
                   </table>
                 </div>
@@ -130,11 +144,13 @@
 
     <th:block th:replace="layouts/default :: scripts"></th:block>
 
+    <!--
     <script src="js/dashboard.js"></script>
     <script>
       var data = /*[[${health.details}]]*/ "";
       refreshDashboard(data);
     </script>
+    -->
    
   </body>
 

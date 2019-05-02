@@ -1,4 +1,4 @@
-package com.openecs.iotms;
+package com.openecs.iotms.controllers;
 
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestMapping;

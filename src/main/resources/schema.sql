@@ -1,4 +1,4 @@
-create table student
+create table if not exists student
 (
    id integer not null,
    name varchar(255) not null,
@@ -6,13 +6,14 @@ create table student
    primary key(id)
 );
 
-create table symbol_list (
+create table if not exists symbol_list (
   symbol char(16) not null,
   company_name varchar(255) not null
 ) 
 as select * from CSVRead('data/nasdaq-listed-symbols_csv.csv');
 
-create table nasdaq_list (
+
+create table if not exists nasdaq_list (
   symbol char(16) not null,
   company_name varchar(255) not null,
   security_name varchar(255),
