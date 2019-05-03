@@ -19,32 +19,46 @@ import org.springframework.boot.actuate.health.Health;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
+
+import java.util.*;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.RowMapper;
+import org.springframework.jdbc.datasource.SimpleDriverDataSource;
+
+// REF:
+// https://spring.io/guides/gs/relational-data-access/
+// https://www.logicbig.com/tutorials/spring-framework/spring-boot/jdbc-and-in-memory-h2.html
+// https://docs.spring.io/spring/docs/current/javadoc-api/org/springframework/jdbc/core/JdbcTemplate.html
 
 @RestController
 public class DataController implements ApplicationContextAware {
     private ApplicationContext appContext;
+    // EX:
+    // appContext.getBeanDefinitionNames();
+    // DiskSpaceHealthIndicator healthBean = (DiskSpaceHealthIndicator) appContext.getBean(DiskSpaceHealthIndicator.class);
 
-    // https://spring.io/guides/gs/relational-data-access/
-    // https://www.logicbig.com/tutorials/spring-framework/spring-boot/jdbc-and-in-memory-h2.html
     @Autowired
     JdbcTemplate jdbcTemplate;    
 
     @Override
     public void setApplicationContext(ApplicationContext appContext) throws BeansException {
         this.appContext = appContext;
-    }    
+    }
+    
+    @RequestMapping("/companies") 
+    public List<Map<String, Object>> getCompanies(Model model) {
+        String sql = "select * from companies limit 10";  
+        return jdbcTemplate.queryForList(sql);
+    } 
 
-    @RequestMapping("/data")
-    public Health home(Model model) {
-        //return "Data Services";
-        DiskSpaceHealthIndicator healthBean = (DiskSpaceHealthIndicator) appContext.getBean(DiskSpaceHealthIndicator.class);
-        return healthBean.health();
-        
-
-        
-        //return appContext.getBeanDefinitionNames();
+    @RequestMapping("/companies/count")
+    public int getCompaniesCount(Model model) {
+		String sql = "select count(*) from companies";
+        return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
+   
 
 }
