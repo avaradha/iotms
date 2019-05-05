@@ -59,6 +59,11 @@ public class DataController implements ApplicationContextAware {
         return jdbcTemplate.queryForObject(sql, Integer.class);
     }
 
+    @RequestMapping("/status")
+    public String status() {
+		return "OK";
+    }     
+
    
 
 }
