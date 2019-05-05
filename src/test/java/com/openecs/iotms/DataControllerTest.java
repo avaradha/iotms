@@ -38,7 +38,6 @@ import com.openecs.iotms.controllers.*;
 @RunWith(SpringRunner.class)
 @SpringBootTest
 @AutoConfigureMockMvc
-//@WebMvcTest
 public class DataControllerTest {
 
   @Autowired

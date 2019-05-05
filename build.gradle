@@ -1,8 +1,42 @@
 plugins {
 	id 'org.springframework.boot' version '2.1.4.RELEASE'
-	// id 'java'
+
 	id 'java-library'
 	id 'maven-publish'
+	id 'findbugs'
+	id 'checkstyle'
+	id 'jacoco'
+}
+
+findbugs {
+  ignoreFailures = true
+}
+
+tasks.withType(FindBugs) {
+	reports {
+		xml.enabled false
+		html.enabled true
+		html.stylesheet resources.text.fromFile('config/xsl/findbugs-fancy.xsl')
+	}
+}
+
+checkstyle {
+	//http://checkstyle.sourceforge.net/
+	toolVersion '7.8.1'
+	//configFile file("config/checkstyle/checkstyle.xml")
+	ignoreFailures = true
+}
+
+tasks.withType(Checkstyle) {
+	reports {
+		xml.enabled true
+		html.enabled true
+		html.stylesheet resources.text.fromFile('config/xsl/checkstyle-simple.xsl')
+	}
+}
+
+jacoco {
+  toolVersion = "0.8.3"
 }
 
 apply plugin: 'io.spring.dependency-management'
