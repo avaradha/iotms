@@ -1,26 +1,19 @@
 package com.openecs.iotms;
 
+import static org.hamcrest.Matchers.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-
 import org.springframework.beans.factory.annotation.Autowired;
-
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
-import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-
-import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.test.web.servlet.MockMvc;
+import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
-
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-
-import static org.junit.Assert.*;
 
 import com.openecs.iotms.controllers.*;
 
@@ -37,26 +30,24 @@ import com.openecs.iotms.controllers.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-@AutoConfigureMockMvc
 public class DataControllerTest {
 
   @Autowired
+  DataController dataController;
+
   private MockMvc mockMvc;
 
-  //@MockBean
-  //private DataService service;  
-
-  @Test
-  public void getCompaniesTest() throws Exception {
-    //when(service.getCompaniesCount()).thenReturn(100);
-    this.mockMvc.perform(get("/companies/count")).andDo(print()).andExpect(status().isOk());
+  @Before
+  public void setup() throws Exception {
+    // Setup application context and build mockMvc
+    this.mockMvc = MockMvcBuilders.standaloneSetup(this.dataController).build();
   }
 
-  @Test
-  public void testDataController() {
-      DataController dataController = new DataController();
-      String result = dataController.status();
-      System.out.println(result);
-      assertEquals(result, "OK");
-  }  
+ @Test
+ public void testApiResponse() throws Exception {
+
+  // Send an API request and validate response (Headers + Content)
+  mockMvc.perform(get("/status"))
+   .andExpect(status().isOk());
+ }  
 }
