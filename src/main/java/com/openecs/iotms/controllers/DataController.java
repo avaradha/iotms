@@ -47,11 +47,11 @@ public class DataController implements ApplicationContextAware {
         this.appContext = appContext;
     }
     
-    @RequestMapping("/companies") 
+    @RequestMapping("/companies")
     public List<Map<String, Object>> getCompanies(Model model) {
         String sql = "select * from companies limit 10";  
         return jdbcTemplate.queryForList(sql);
-    } 
+    }
 
     @RequestMapping("/companies/count")
     public int getCompaniesCount(Model model) {
@@ -62,8 +62,5 @@ public class DataController implements ApplicationContextAware {
     @RequestMapping("/status")
     public String status() {
 		return "OK";
-    }     
-
-   
-
+    }
 }
